@@ -1,0 +1,12 @@
+---
+- hosts: git
+  become: true
+  become_user: root
+  tasks: 
+  - name: install httpd service on git
+    yum: name=httpd state=latest
+    ignore_errors: yes
+    notify: httpd_start
+  handlers:
+  - name: httpd_start
+    service: name=httpd state=started enabled=true
