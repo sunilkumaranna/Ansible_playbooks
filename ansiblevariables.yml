@@ -1,0 +1,12 @@
+---
+- hosts: git
+  become: true
+  become_user: root
+  vars:
+   - var1: hello sunil
+   - var2: how are you doing
+  tasks:
+  - name: sending output by calling variables
+    shell: echo "hay {{ var1  }} {{ var2 }}"
+    register: shelloutput
+  - debug: msg="{{ shelloutput.stdout }}"
