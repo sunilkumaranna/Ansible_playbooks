@@ -1,0 +1,9 @@
+---
+- hosts: git
+  become: true
+  become_user: root
+  tasks:
+  - name: file status check
+    stat: path=/home/ansible1 
+    register: result
+  - debug: msg="{{ result }}"
