@@ -1,0 +1,11 @@
+---
+- hosts: git
+  become: true
+  become_user: root
+  tasks:
+  - name: check the status of httpd
+    shell: systemctl status httpd
+    register: result
+  - name: uninstall httpd service
+    yum: name=httpd state=absent
+    when: result is succeeded
