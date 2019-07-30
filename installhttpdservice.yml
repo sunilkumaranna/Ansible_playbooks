@@ -1,0 +1,10 @@
+---
+- hosts: git
+  become: true
+  become_user: root
+  tasks:
+  - name: remote httpd service
+    import_playbook: removehttpservice.yml
+  - name: install httpd service
+    yum: name=httpd status=latest
+    service: name=httpd status=started 
